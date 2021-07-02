@@ -1,0 +1,43 @@
+/*  Color Codes 
+(subject to slight changes/tweaks based on my ocd of making stuff look nice)
+
+    Deep_Moss_Green: #3B6B35
+    Fern_Green: #637F42
+    Olive_Drab_Camouflage: #4C4A41
+    Bistre_Brown: #9F7B21
+    Misty_Moss: #BFAA72
+    Antique_Bronze: #645B16
+
+*/
+
+
+header {
+    padding: 25px 10px 20px 30px;
+    background: #637f42;
+    width: 100%;
+
+}
+
+body {
+    background:  #fff2b8;
+    
+}
+.title {
+    padding: 20px 0px 0px 0px;
+    
+}
+
+.gMap {
+    height: 400px;
+    width: 400px;
+    margin: 25px
+
+}
+
+
+footer {
+    background: #637f42;
+    padding: 20px;
+    color: whitesmoke;
+    border-top: solid 4px #4c4a41;
+}
