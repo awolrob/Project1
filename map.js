@@ -1,20 +1,49 @@
+var aNPS = [
+    {
+        markerName: "center",
+        latitude: "41.38855173798833",
+        longitude: "-82.21036065433786",
+    }
+];
+var myLatLng = { lat: 0, lng: 0 };
+var map;
+var markerName;
+
 function initMap() {
-    const myLatLng = { lat: 41.38855173798833, lng: -82.21036065433786 };
-    const myLatLng2 = { lat: 41.385959371762645, lng: -82.21088860697019 }; 
-    /* test local long and lat 41.38923980160808, -82.21027917718673  41.38855173798833, -82.21036065433786
-    41.385959371762645, -82.21088860697019 */
+    myLatLng.lat = parseFloat(aNPS[0].latitude);
+    myLatLng.lng = parseFloat(aNPS[0].longitude);
+    map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 4,
+        center: myLatLng,
+    });
+}
+
+function updateMap() {
+    myLatLng.lat = parseFloat(aNPS[0].latitude);
+    myLatLng.lng = parseFloat(aNPS[0].longitude);
     const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 13,
+        zoom: 5,
         center: myLatLng,
     });
     new google.maps.Marker({
         position: myLatLng,
         map,
-        title: "DQ In Amherst",
+        title: aNPS[0].markerName,
     });
-    new google.maps.Marker({
-        position: myLatLng2,
-        map,
-        title: "Subway",
-    });
+
+    for (i = 1; i < aNPS.length; i++) {
+        myLatLng.lat = parseFloat(aNPS[i].latitude);
+        myLatLng.lng = parseFloat(aNPS[i].longitude);
+        markerName = aNPS[i].markerName;
+        // window.setTimeout(() => {
+            new google.maps.Marker({
+                position: myLatLng,
+                map,
+                title: markerName,
+                animation: google.maps.Animation.DROP,
+            })
+                ;
+        // }, 50);
+    }
+
 }
