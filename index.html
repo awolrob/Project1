@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Google Maps Api call -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="./assets/js/map/map.js"></script>
+    <!-- End Google Maps Api call -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
@@ -30,12 +35,12 @@
 
     <!-- Map Api and Weather Api -->
 
-    <div class="container">
-        <div class="container">
+    <div class="column">
+        <div id="map" class="column is-">
             Google Maps Api
         </div>
 
-        <div class="container">
+        <div id="weather" class="column is-half">
             Weather API
         </div>
     </div>
@@ -43,6 +48,11 @@
 
     <script src="./assets/apikey.js"></script>
     <script src="./assets/script.js"></script>
+     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+     <script
+     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXIaEMJFrPiB6zlFG-ZIHSimP1PRQ7eGA&callback=initMap&libraries=&v=weekly"
+     async
+   ></script>
     
 </body>
 </html>
