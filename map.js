@@ -19,6 +19,8 @@ function initMap() {
 }
 
 function updateMap() {
+    const image =
+        "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png";
     myLatLng.lat = parseFloat(aNPS[0].latitude);
     myLatLng.lng = parseFloat(aNPS[0].longitude);
     const map = new google.maps.Map(document.getElementById("map"), {
@@ -36,13 +38,14 @@ function updateMap() {
         myLatLng.lng = parseFloat(aNPS[i].longitude);
         markerName = aNPS[i].markerName;
         // window.setTimeout(() => {
-            new google.maps.Marker({
-                position: myLatLng,
-                map,
-                title: markerName,
-                animation: google.maps.Animation.DROP,
-            })
-                ;
+        new google.maps.Marker({
+            position: myLatLng,
+            map,
+            title: markerName,
+            icon: image,
+            animation: google.maps.Animation.DROP,
+        })
+            ;
         // }, 50);
     }
 
