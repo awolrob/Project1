@@ -3,3 +3,7 @@ project
 CWRUProject1
 
 AIzaSyCXIaEMJFrPiB6zlFG-ZIHSimP1PRQ7eGA
+
+Weather Api Key
+
+b13e7d82b3403d3d74e4fe8d2eaeb986
