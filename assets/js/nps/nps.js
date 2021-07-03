@@ -16,14 +16,14 @@ function fNpsApi() {
         })
         .then(function (response) {
             console.log(response);
-            aNPS[0].markerName = response.data[0].name;
+            aNPS[0].markerName = response.data[0].fullName;
             aNPS[0].latitude = response.data[0].latitude;
             aNPS[0].longitude = response.data[0].longitude;
             
             for (i = 1; i < response.data.length; i ++) {
                 aNPS.push(
                     {
-                        markerName: response.data[i].name,
+                        markerName: response.data[i].fullName,
                         latitude: response.data[i].latitude,
                         longitude: response.data[i].longitude,
                     }

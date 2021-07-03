@@ -7,12 +7,18 @@
     <script src="./map.js"></script>
   </head>
   <body>
+    <h1>Now let's add some options to our search</h1>
+    <div>Search term: <input type="text" id="searchTerm" value="Cats" /></div>
+    <button onclick="fNpsApi()">Search!</button>
+
     <div id="map"></div>
+
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXIaEMJFrPiB6zlFG-ZIHSimP1PRQ7eGA&callback=initMap&libraries=&v=weekly"
-      async
+      
     ></script>
+    <script src="./assets/js/nps.js"></script>
   </body>
 </html>
