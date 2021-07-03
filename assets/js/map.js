@@ -1,14 +1,3 @@
-var aNPS = [
-    {
-        markerName: "center",
-        latitude: "41.38855173798833",
-        longitude: "-82.21036065433786",
-    }
-];
-var myLatLng = { lat: 0, lng: 0 };
-var map;
-var markerName;
-
 function initMap() {
     myLatLng.lat = parseFloat(aNPS[0].latitude);
     myLatLng.lng = parseFloat(aNPS[0].longitude);
