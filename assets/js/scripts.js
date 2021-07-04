@@ -26,9 +26,19 @@ var markerName;
 searchClickHandler = function (event) {
     event.preventDefault();
     searchTerm = searchState.value.trim();
-    console.log(searchTerm)
+    // console.log(searchTerm)
     fNpsApi(searchTerm);
 };
+
+fixLngData = function (longitude) {
+    var correctedLongitude;
+    if (longitude > 0) {
+        correctedLongitude = longitude * -1;
+    } else {
+        correctedLongitude = longitude;
+    }
+    return correctedLongitude;
+}
 
 //call National Park Service API for state code selected
 fNpsApi = function (stateIn) {
@@ -50,18 +60,25 @@ fNpsApi = function (stateIn) {
         })
         .then(function (response) {
             console.log(response);
-            aNPS[0].markerName = response.data[0].name;
-            aNPS[0].latitude = response.data[0].latitude;
-            aNPS[0].longitude = response.data[0].longitude;
+            if (response.total > 0) {
+                aNPS[0].markerName = response.data[0].name;
+                aNPS[0].latitude = response.data[0].latitude;
+                //fix data errors on NPS data
+                aNPS[0].longitude = fixLngData(response.data[0].longitude);
 
-            for (i = 1; i < response.data.length; i++) {
-                aNPS.push({
-                    markerName: response.data[i].name,
-                    latitude: response.data[i].latitude,
-                    longitude: response.data[i].longitude,
-                })
+                for (i = 1; i < response.data.length; i++) {
+                    if (response.data[i].latLong > "") {
+                        aNPS.push({
+                            markerName: response.data[i].name,
+                            latitude: response.data[i].latitude,
+                            longitude: fixLngData(response.data[i].longitude)
+                        })
+                    }
+                }
+                updateMap(aNPS, stateIn);
+            } else {
+                alert("Sorry, there are no National Park System campgrounds in the state of: " + stateIn)
             }
-            updateMap(aNPS, stateIn);
         }
         );
 };
@@ -77,15 +94,24 @@ function initMap() {
 };
 
 function getMapCenter(centerIn) {
-    console.log(jsonStateAbbr);
-    debugger;
-    var stateIndex = jsonStateAbbr.indexOf(centerIn);
+    // console.log(jsonStateAbbr);
+    // debugger;
     var latitude = "39.50";
     var longitude = "-98.35";
+
+    function arrayMap() {
+        stateIndex = jsonStateAbbr.map(function (e) {
+            return e.abbv;
+        }).indexOf(centerIn);
+        // console.log("Index of 'state'  is = " + stateIndex);
+    }
+    arrayMap();
 
     if (stateIndex === -1) {
         //not state sent or not found - center map on USA
         centerMap(parseFloat(latitude), parseFloat(longitude), 3);
+    } else {
+        centerMap(parseFloat(jsonStateAbbr[stateIndex].latitude), parseFloat(jsonStateAbbr[stateIndex].longitude), 4);
     }
 };
 
@@ -102,14 +128,17 @@ function centerMap(lat, lng, zoomIn) {
     };
 };
 
+function clearMarkers() {
+    setMapOnAll(null);
+}
+
 // update google map with the passing object to loop through and drop markers
 function updateMap(objectIn, centerOn) {
-    const image =
-        "./assets/images/clipart2984201.png";
-
-
+    var image = "./assets/images/clipart2984201.png";
+    //Create LatLngBounds object.
+    var latlngbounds = new google.maps.LatLngBounds();
     //create a new map and center on state or country
-    getMapCenter(centerOn);
+    // getMapCenter(centerOn);
     // centerMap(parseFloat(objectIn[0].latitude), parseFloat(objectIn[0].longitude), 5);
 
     // myLatLng.lat = parseFloat(objectIn[0].latitude);
@@ -118,16 +147,16 @@ function updateMap(objectIn, centerOn) {
     //     zoom: 5,
     //     center: myLatLng,
     // });
-    new google.maps.Marker({
-        position: myLatLng,
-        map,
-        title: aNPS[0].markerName,
-    });
+    // new google.maps.Marker({
+    //     position: myLatLng,
+    //     map,
+    //     title: aNPS[0].markerName,
+    // });
 
-    for (i = 1; i < aNPS.length; i++) {
+    for (i = 0; i < aNPS.length; i++) {
         myLatLng.lat = parseFloat(objectIn[i].latitude);
         myLatLng.lng = parseFloat(objectIn[i].longitude);
-        markerName = aNPS[i].markerName;
+        console.log(markerName = aNPS[i].markerName + " lat: " + parseFloat(objectIn[i].latitude) + " lng: " + parseFloat(objectIn[i].longitude));
         // window.setTimeout(() => {
         // add info window?  https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple
 
@@ -137,10 +166,16 @@ function updateMap(objectIn, centerOn) {
             title: markerName,
             icon: image,
             animation: google.maps.Animation.DROP,
-        })
-            ;
+        });
+        latlngbounds.extend(myLatLng)
         // }, 50);
     }
+    //Get the boundaries of the Map.
+    var bounds = new google.maps.LatLngBounds();
+
+    //Center map and adjust Zoom based on the position of all markers.
+    map.setCenter(latlngbounds.getCenter());
+    map.fitBounds(latlngbounds);
 
 }
 
@@ -149,7 +184,7 @@ function updateMap(objectIn, centerOn) {
 centerMap(parseFloat(aNPS[0].latitude), parseFloat(aNPS[0].longitude), 4);
 
 //Call NPS API for all sites in the US
-fNpsApi("");
+// fNpsApi("");
 
 getMapCenter();
 
