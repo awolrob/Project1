@@ -4,6 +4,7 @@ var searchState = document.getElementById("state");
 var searchTerm;
 
 //National Park Service API Variables
+// center of the USA
 var aNPS = [
     {
         markerName: "center",
@@ -16,6 +17,8 @@ var aNPS = [
 var myLatLng = { lat: 0, lng: 0 };
 var map;
 var markerName;
+/* END VARIABLES*/
+
 
 /* FUNCTIONS */
 
@@ -58,30 +61,63 @@ fNpsApi = function (stateIn) {
                     longitude: response.data[i].longitude,
                 })
             }
-            updateMap();
+            updateMap(aNPS, stateIn);
         }
         );
+};
 
-}
-
+//initialize good map - first call through google maps "callback" parm
 function initMap() {
-    myLatLng.lat = parseFloat(aNPS[0].latitude);
-    myLatLng.lng = parseFloat(aNPS[0].longitude);
+    // myLatLng.lat = parseFloat(aNPS[0].latitude);
+    // myLatLng.lng = parseFloat(aNPS[0].longitude);
     map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 4,
-        center: myLatLng,
+        // zoom: 4,
+        // center: myLatLng,
     });
-}
+};
 
-function updateMap() {
+function getMapCenter(centerIn) {
+    console.log(jsonStateAbbr);
+    debugger;
+    var stateIndex = jsonStateAbbr.indexOf(centerIn);
+    var latitude = "39.50";
+    var longitude = "-98.35";
+
+    if (stateIndex === -1) {
+        //not state sent or not found - center map on USA
+        centerMap(parseFloat(latitude), parseFloat(longitude), 3);
+    }
+};
+
+//Center map on state or USA
+function centerMap(lat, lng, zoomIn) {
+    myLatLng.lat = parseFloat(lat);
+    myLatLng.lng = parseFloat(lng);
+    //ugly first pass logic
+    if (map) {
+        map = new google.maps.Map(document.getElementById("map"), {
+            zoom: zoomIn,
+            center: myLatLng,
+        });
+    };
+};
+
+// update google map with the passing object to loop through and drop markers
+function updateMap(objectIn, centerOn) {
     const image =
         "./assets/images/clipart2984201.png";
-    myLatLng.lat = parseFloat(aNPS[0].latitude);
-    myLatLng.lng = parseFloat(aNPS[0].longitude);
-    const map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 5,
-        center: myLatLng,
-    });
+
+
+    //create a new map and center on state or country
+    getMapCenter(centerOn);
+    // centerMap(parseFloat(objectIn[0].latitude), parseFloat(objectIn[0].longitude), 5);
+
+    // myLatLng.lat = parseFloat(objectIn[0].latitude);
+    // myLatLng.lng = parseFloat(objectIn[0].longitude);
+    // const map = new google.maps.Map(document.getElementById("map"), {
+    //     zoom: 5,
+    //     center: myLatLng,
+    // });
     new google.maps.Marker({
         position: myLatLng,
         map,
@@ -89,11 +125,11 @@ function updateMap() {
     });
 
     for (i = 1; i < aNPS.length; i++) {
-        myLatLng.lat = parseFloat(aNPS[i].latitude);
-        myLatLng.lng = parseFloat(aNPS[i].longitude);
+        myLatLng.lat = parseFloat(objectIn[i].latitude);
+        myLatLng.lng = parseFloat(objectIn[i].longitude);
         markerName = aNPS[i].markerName;
         // window.setTimeout(() => {
-// add info window?  https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple
+        // add info window?  https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple
 
         new google.maps.Marker({
             position: myLatLng,
@@ -110,9 +146,12 @@ function updateMap() {
 
 /* MAIN LOGIC*/
 //Center map in US//
-// initMap(parseFloat(aNPS[0].latitude),parseFloat(aNPS[0].longitude),3);
+centerMap(parseFloat(aNPS[0].latitude), parseFloat(aNPS[0].longitude), 4);
+
 //Call NPS API for all sites in the US
 fNpsApi("");
+
+getMapCenter();
 
 searchBtn.addEventListener("submit", searchClickHandler);
 // Define Variables to hold Camp API data
