@@ -9,3 +9,7 @@ Credits:
 1) https://developers.google.com/maps/documentation/javascript/examples/marker-simple#maps_marker_simple-css
 
 2) https://developers.google.com/maps/documentation/javascript/overview?hl=en_US
+ 
+4) https://gist.github.com/mshafrir/2646763
+
+5) https://gist.github.com/meiqimichelle/7727723
