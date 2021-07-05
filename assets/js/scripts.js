@@ -3,6 +3,16 @@ var searchBtn = document.getElementById("user-form");
 var searchState = document.getElementById("state");
 var searchTerm;
 
+var select = document.getElementById("#select-state"); 
+
+for(var i = 0; i < options.length; i++) {
+    var jsonStateAbbr = options[i];
+    var el = document.createElement("option");
+    el.textContent = jsonStateAbbr;
+    el.value = jsonStateAbbr, "abbv";
+    select.appendChild(el);
+}
+
 //National Park Service API Variables
 // center of the USA
 var aNPS = [
@@ -202,6 +212,7 @@ function updateMap(objectIn, centerOn) {
                 anchor: marker,
                 map,
                 shouldFocus: false,
+                // getweather(longitude,latitude);
             });
         });
 
@@ -223,7 +234,7 @@ function updateMap(objectIn, centerOn) {
 centerMap(parseFloat(aNPS[0].latitude), parseFloat(aNPS[0].longitude), 4);
 
 //Call NPS API for all sites in the US
-// fNpsApi("");
+fNpsApi("");
 
 getMapCenter();
 
