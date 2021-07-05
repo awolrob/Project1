@@ -9,11 +9,18 @@
     <!-- Google Maps Api call -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <!-- End Google Maps Api call -->
+<<<<<<< HEAD
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/styles/style.css">
     <!-- <link rel="stylesheet" href="./assets/images/clipart2984201.png"> -->
+=======
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="./assets/style.css">
+
+>>>>>>> master
     <title>Can I Camp</title>
 </head>
 
@@ -28,10 +35,15 @@
     <!-- Search Bar -->
     <div class="container">
         <div class="container">
+<<<<<<< HEAD
             <!-- <form class="search bar is-large" action="action_page.php"> -->
             <form id="user-form" class="search bar is-large" action="action_page.php">
                 <label for="state"></label>
                 <input id="state" type="text" placeholder="Type in State Code.." name="state">
+=======
+            <form class=" search bar is-large" action="action_page.php">
+                <input type="text" placeholder="Type in State Code.." name="search">
+>>>>>>> master
                 <button type="submit">Search<i class="search"></i></button>
             </form>
         </div>
@@ -39,8 +51,13 @@
 
     <!-- Map Api and Weather Api -->
 
+<<<<<<< HEAD
 
         <div id="map" class="column is-half">
+=======
+    <div class="column">
+        <div id="map" class="column is- gMap">
+>>>>>>> master
             Google Maps Api
         </div>
     <div class="column">
@@ -49,7 +66,13 @@
         </div>
     </div>
 
+    <footer>
+        <p>
+            A JSON Sedekids Creation
+        </p>
+    </footer>
 
+<<<<<<< HEAD
     <!-- <script src="./assets/apikey.js"></script> -->
     <script src="./assets/js/states.js"></script>
     <script src="./assets/js/scripts.js"></script>
@@ -59,6 +82,16 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXIaEMJFrPiB6zlFG-ZIHSimP1PRQ7eGA&callback=initMap&libraries=&v=weekly"
         async></script>
 
+=======
+    <script src="./assets/apikey.js"></script>
+    <script src="./assets/script.js"></script>
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script 
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXIaEMJFrPiB6zlFG-ZIHSimP1PRQ7eGA&callback=initMap&libraries=&v=weekly"
+    async>
+    </script>
+    
+>>>>>>> master
 </body>
 
 </html>
