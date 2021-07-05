@@ -10,13 +10,15 @@ var aNPS = [
         markerName: "center",
         latitude: "39.50",
         longitude: "-98.35",
+        description: ""
     }
 ];
 
 // Google Maps API Variables
 var myLatLng = { lat: 0, lng: 0 };
 var map;
-var markerName;
+var mapArray = [];
+// var markerName;
 /* END VARIABLES*/
 
 
@@ -47,7 +49,7 @@ fNpsApi = function (stateIn) {
         stateIn +
         '&limit=700' +
         '&api_key=nNVtVCtPxYIdqgXcnAhfGjtCq9cW1SUGJ6AnV68u';
-
+    aNPS = [];
     // Create a variable to hold the value of rating
     // var rating = document.querySelector('#rating').value;
     //  https://developer.nps.gov/api/v1/parks?parkCode=acad&api_key=nNVtVCtPxYIdqgXcnAhfGjtCq9cW1SUGJ6AnV68u
@@ -61,18 +63,40 @@ fNpsApi = function (stateIn) {
         .then(function (response) {
             console.log(response);
             if (response.total > 0) {
-                aNPS[0].markerName = response.data[0].name;
-                aNPS[0].latitude = response.data[0].latitude;
-                //fix data errors on NPS data
-                aNPS[0].longitude = fixLngData(response.data[0].longitude);
-
-                for (i = 1; i < response.data.length; i++) {
+                for (i = 0; i < response.data.length; i++) {
                     if (response.data[i].latLong > "") {
-                        aNPS.push({
-                            markerName: response.data[i].name,
-                            latitude: response.data[i].latitude,
-                            longitude: fixLngData(response.data[i].longitude)
-                        })
+
+                        var image;
+                        if (typeof response.data[i].images[0] === "undefined") {
+                            image = ""
+                        } else {
+                            image = "</br></br><img style=width:200px; src=' " +
+                                response.data[i].images[0].url +
+                                "' </img>"
+                        };
+
+                        var descText;
+
+                        if (response.data[i].audioDescription === "") {
+                            descText = response.data[i].description
+                        } else {
+                            descText = response.data[i].audioDescription
+                        }
+                            var infoHTML = "<h1><strong>" +
+                                response.data[i].name +
+                                "</strong></h1>" + "</br><p>" +
+                                descText +
+                                "</p>" +
+                                image;
+                        console.log(infoHTML);
+                        aNPS.push(
+                            {
+                                markerName: response.data[i].name,
+                                latitude: response.data[i].latitude,
+                                longitude: fixLngData(response.data[i].longitude),
+                                description: infoHTML
+                            }
+                        )
                     }
                 }
                 updateMap(aNPS, stateIn);
@@ -153,20 +177,35 @@ function updateMap(objectIn, centerOn) {
     //     title: aNPS[0].markerName,
     // });
 
-    for (i = 0; i < aNPS.length; i++) {
+    for (i = 0; i < objectIn.length; i++) {
         myLatLng.lat = parseFloat(objectIn[i].latitude);
         myLatLng.lng = parseFloat(objectIn[i].longitude);
-        console.log(markerName = aNPS[i].markerName + " lat: " + parseFloat(objectIn[i].latitude) + " lng: " + parseFloat(objectIn[i].longitude));
+        // console.log(markerName = aNPS[i].markerName + " lat: " + parseFloat(objectIn[i].latitude) + " lng: " + parseFloat(objectIn[i].longitude));
         // window.setTimeout(() => {
         // add info window?  https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple
 
-        new google.maps.Marker({
+        const marker = new google.maps.Marker({
             position: myLatLng,
             map,
-            title: markerName,
+            title: aNPS[i].markerName,
             icon: image,
             animation: google.maps.Animation.DROP,
         });
+
+        const infowindow = new google.maps.InfoWindow({
+            content: objectIn[i].description,
+            maxWidth: 200,
+        });
+
+        marker.addListener("click", () => {
+            infowindow.open({
+                anchor: marker,
+                map,
+                shouldFocus: false,
+            });
+        });
+
+
         latlngbounds.extend(myLatLng)
         // }, 50);
     }
