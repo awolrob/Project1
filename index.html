@@ -9,62 +9,75 @@
     <!-- Google Maps Api call -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <!-- End Google Maps Api call -->
-<<<<<<< HEAD
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/styles/style.css">
     <!-- <link rel="stylesheet" href="./assets/images/clipart2984201.png"> -->
-=======
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
-    <link rel="stylesheet" href="./assets/style.css">
 
->>>>>>> master
-    <title>Can I Camp</title>
+    <title>National Park Search and Weather Forecast</title>
 </head>
 
+    <header class="header" style="margin: 0;">
+        <h1 class="title is-1">Can I Camp</h1>
+        <h2 class="subtitle is-2">National Park Search and Weather Forecast</h2>
+    </header>
+
+
 <body>
-    <div class="container">
-        <header>
-            <h1 class="title is-1">Can I Camp</h1>
-            <h2 class="subtitle is-2">National Park Search and Weather Forecast</h2>
-        </header>
-    </div>
+  
 
     <!-- Search Bar -->
     <div class="container">
-        <div class="container">
-<<<<<<< HEAD
+        <div class="column is-12">
+
+
+            <div class="select is-large" style="margin-bottom: 10px; padding-bottom: 10px;">
+                <select id="select-state">
+                  <option>Select dropdown</option>
+                  <option>With options</option>
+                </select>
+              </div>
             <!-- <form class="search bar is-large" action="action_page.php"> -->
-            <form id="user-form" class="search bar is-large" action="action_page.php">
+            <!-- <form id="user-form" class="search-bar is-large" style="margin: 5px; padding-bottom: 10px;" action="action_page.php">
                 <label for="state"></label>
-                <input id="state" type="text" placeholder="Type in State Code.." name="state">
-=======
-            <form class=" search bar is-large" action="action_page.php">
-                <input type="text" placeholder="Type in State Code.." name="search">
->>>>>>> master
-                <button type="submit">Search<i class="search"></i></button>
-            </form>
+                <input id="state" type="text" placeholder="Type in State Code.." name="state" class="input is-large">
+                <button type="submit" class="button is-large">Search<i class="search"></i></button>
+            </form> -->
         </div>
+
+        <div class="columns" style="margin-bottom: 15px;">
+            <div  class="column is-half box" style="background-color: darkolivegreen;">
+                <div class="field is-primary" style="padding: 3px; background-color: #fff2b8;">
+                    National Parks Map
+                    <div class="control" id="map">
+
+                    </div>
+                </div>
+                
+            </div>
+
+            <div  class="column is-half box" style="background-color: darkolivegreen;">
+                <div class="field" style="padding-bottom: 10px; background-color: #fff2b8;">
+                    <p class="text is-large">Recent Searches</p> 
+                    <div class="control" id="history">
+
+                    </div>
+                </div>
+                
+            </div>
+            <div  class="column is-half">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati odio assumenda dolorem, praesentium dicta, aliquam vitae magni nulla fuga doloremque reprehenderit quae laudantium natus laborum aut nesciunt cum aspernatur illo?</p>
+            </div>
+        </div>
+    
+
+    
+    
     </div>
 
-    <!-- Map Api and Weather Api -->
 
-<<<<<<< HEAD
 
-        <div id="map" class="column is-half">
-=======
-    <div class="column">
-        <div id="map" class="column is- gMap">
->>>>>>> master
-            Google Maps Api
-        </div>
-    <div class="column">
-        <div id="weather" class="column is-half">
-            Weather API
-        </div>
-    </div>
 
     <footer>
         <p>
@@ -72,7 +85,6 @@
         </p>
     </footer>
 
-<<<<<<< HEAD
     <!-- <script src="./assets/apikey.js"></script> -->
     <script src="./assets/js/states.js"></script>
     <script src="./assets/js/scripts.js"></script>
@@ -82,16 +94,6 @@
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXIaEMJFrPiB6zlFG-ZIHSimP1PRQ7eGA&callback=initMap&libraries=&v=weekly"
         async></script>
 
-=======
-    <script src="./assets/apikey.js"></script>
-    <script src="./assets/script.js"></script>
-    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
-    <script 
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXIaEMJFrPiB6zlFG-ZIHSimP1PRQ7eGA&callback=initMap&libraries=&v=weekly"
-    async>
-    </script>
-    
->>>>>>> master
 </body>
 
 </html>
