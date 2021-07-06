@@ -14,6 +14,16 @@ var aNPS = [
     }
 ];
 
+//National Park Service history data
+var aNPSHistory = [
+    // {
+    //     markerName: "center",
+    //     latitude: "39.50",
+    //     longitude: "-98.35",
+    //     description: ""
+    // }
+];
+
 // Google Maps API Variables
 var myLatLng = { lat: 0, lng: 0 };
 var map;
@@ -82,13 +92,15 @@ fNpsApi = function (stateIn) {
                         } else {
                             descText = response.data[i].audioDescription
                         }
-                            var infoHTML = "<h1><strong>" +
-                                response.data[i].name +
-                                "</strong></h1>" + "</br><p>" +
-                                descText +
-                                "</p>" +
-                                image;
-                        console.log(infoHTML);
+                        var infoHTML = "<h1 id='infoWindowData' data-index='" +
+                            i +
+                            "'><strong>" +
+                            response.data[i].name +
+                            "</strong></h1>" + "</br><p>" +
+                            descText +
+                            "</p>" +
+                            image;
+                        // console.log(infoHTML);
                         aNPS.push(
                             {
                                 markerName: response.data[i].name,
@@ -197,6 +209,8 @@ function updateMap(objectIn, centerOn) {
             maxWidth: 200,
         });
 
+        console.log(objectIn[i].description);
+
         marker.addListener("click", () => {
             infowindow.open({
                 anchor: marker,
@@ -205,6 +219,13 @@ function updateMap(objectIn, centerOn) {
             });
         });
 
+        google.maps.event.addListener(infowindow, 'domready', function () {
+            // $(".btn-site").on('click', function(e) {
+            console.log('dom ready');
+            console.log("infoWindow Data ",document.getElementById("infoWindowData"));
+
+            // });  
+        });
 
         latlngbounds.extend(myLatLng)
         // }, 50);
