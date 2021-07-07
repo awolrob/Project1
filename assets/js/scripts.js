@@ -3,6 +3,7 @@ var searchBtn = document.getElementById("user-form");
 var searchState = document.getElementById("state");
 var searchTerm;
 
+
 //National Park Service API Variables
 // center of the USA
 var aNPS = [
@@ -71,11 +72,13 @@ fNpsApi = function (stateIn) {
             return response.json();
         })
         .then(function (response) {
-            console.log(response);
+            // console.log(response);
             if (response.total > 0) {
+                // console.log("response total : ", response.total);
+                var iGoodDataIndex = -1;
                 for (i = 0; i < response.data.length; i++) {
                     if (response.data[i].latLong > "") {
-
+                        iGoodDataIndex = iGoodDataIndex + 1;
                         var image;
                         if (typeof response.data[i].images[0] === "undefined") {
                             image = ""
@@ -93,7 +96,7 @@ fNpsApi = function (stateIn) {
                             descText = response.data[i].audioDescription
                         }
                         var infoHTML = "<h1 id='infoWindowData' data-index='" +
-                            i +
+                            iGoodDataIndex +
                             "'><strong>" +
                             response.data[i].name +
                             "</strong></h1>" + "</br><p>" +
@@ -111,6 +114,7 @@ fNpsApi = function (stateIn) {
                         )
                     }
                 }
+                // console.log("aNPS total : ", aNPS.length);
                 updateMap(aNPS, stateIn);
             } else {
                 alert("Sorry, there are no National Park System campgrounds in the state of: " + stateIn)
@@ -172,7 +176,7 @@ var loadHistoryBtn = function () {
     $("#history").empty();
     if (aNPSHistory) {
         for (i = 0; i < aNPSHistory.length; i++) {
-            console.log(aNPSHistory[i].markerName);
+            // console.log(aNPSHistory[i].markerName);
             $("#history").append(
                 $("<button>").addClass("").text(aNPSHistory[i].markerName)
             );
@@ -189,6 +193,7 @@ var saveHistoryData = function (aNPSIndex) {
     }
     aNPSHistory.push(aNPS[aNPSIndex])
     localStorage.setItem("campClickSave", JSON.stringify(aNPSHistory));
+    // debugger;
     loadHistoryBtn();
 };
 
@@ -228,14 +233,21 @@ function updateMap(objectIn, centerOn) {
             animation: google.maps.Animation.DROP,
         });
 
+        // infowindow.close();
+
         const infowindow = new google.maps.InfoWindow({
             content: objectIn[i].description,
             maxWidth: 200,
         });
 
-        console.log(objectIn[i].description);
+        // console.log(objectIn[i].description);
 
         marker.addListener("click", () => {
+            if (typeof lastInfoWindow === "undefined") {
+            } else {
+                lastInfoWindow.close();
+            }
+            // console.log("marker on click: ", marker);
             infowindow.open({
                 anchor: marker,
                 map,
@@ -246,11 +258,11 @@ function updateMap(objectIn, centerOn) {
 
         google.maps.event.addListener(infowindow, 'domready', function () {
             // $(".btn-site").on('click', function(e) {
-            console.log('dom ready');
-            console.log(document.getElementById("infoWindowData").getAttribute("data-index"));
-            // console.log("infoWindow Data ",document.getElementById("infoWindowData"));
+            // console.log('dom ready');
+            // console.log(document.getElementById("infoWindowData").getAttribute("data-index"));
+            // console.log("infoWindow Data ", document.getElementById("infoWindowData"));
             saveHistoryData(document.getElementById("infoWindowData").getAttribute("data-index"))
-
+            lastInfoWindow = infowindow;
             // });  
         });
 
@@ -277,21 +289,21 @@ getMapCenter();
 
 
 var selectEl = document.getElementById("select-state");
-console.log(selectEl)
+// console.log(selectEl)
 
-for(var i=0; i<jsonStateAbbr.length; i++) {
+for (var i = 0; i < jsonStateAbbr.length; i++) {
     // console.log(i)
-    var newOption =  document.createElement("option");
+    var newOption = document.createElement("option");
     newOption.textContent = jsonStateAbbr[i].state;
-    newOption.setAttribute ("value", jsonStateAbbr[i].abbv);
+    newOption.setAttribute("value", jsonStateAbbr[i].abbv);
     selectEl.appendChild(newOption)
-    console.log(newOption);
+    // console.log(newOption);
 }
 
-selectEl.addEventListener("select", console.log("here"), false);
+// selectEl.addEventListener("select", console.log("here"), false);
 
-var myfunction = function() {
-    console.log(selectEl.value);
+var myfunction = function () {
+    // console.log(selectEl.value);
     fNpsApi(selectEl.value);
 }
 // for(var i = 0; i < jsonStateAbbr.length; i++) {
