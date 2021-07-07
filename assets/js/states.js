@@ -14,7 +14,7 @@ var jsonStateAbbr = [
     },
     {
         "state": "Arkansas",
-        "abbv": "AK",
+        "abbv": "AR",
         "latitude": 34.9513,
         "longitude": -92.3809
     },
@@ -307,13 +307,3 @@ var jsonStateAbbr = [
         "longitude": -107.2085
     }
 ];
-
-// var select = document.getElementById("#select-state"); 
-
-// for(var i = 0; i < options.length; i++) {
-//     var jsonStateAbbr = options[i];
-//     var el = document.createElement("option");
-//     el.textContent = jsonStateAbbr;
-//     el.value = jsonStateAbbr, "abbv";
-//     select.appendChild(el);
-// }​
