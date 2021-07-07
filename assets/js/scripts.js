@@ -182,7 +182,7 @@ var loadHistoryBtn = function () {
         for (i = 0; i < aNPSHistory.length; i++) {
             // console.log(aNPSHistory[i].markerName);
             $("#history").append(
-                $("<button>").addClass("").text(aNPSHistory[i].markerName)
+                $("<p>").addClass("").text(aNPSHistory[i].markerName)
             );
         }
     }
@@ -192,7 +192,7 @@ var loadHistoryBtn = function () {
 //save 10 click  history to history array
 var saveHistoryData = function (aNPSIndex) {
     if (aNPSHistory.includes(aNPS[aNPSIndex])) { return };
-    if (aNPSHistory.length > 9) {
+    if (aNPSHistory.length > 19) {
         aNPSHistory.shift();
     }
     aNPSHistory.push(aNPS[aNPSIndex])
