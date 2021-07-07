@@ -166,7 +166,31 @@ function centerMap(lat, lng, zoomIn) {
 
 function clearMarkers() {
     setMapOnAll(null);
+};
+
+var loadHistoryBtn = function () {
+    $("#history").empty();
+    if (aNPSHistory) {
+        for (i = 0; i < aNPSHistory.length; i++) {
+            console.log(aNPSHistory[i].markerName);
+            $("#history").append(
+                $("<button>").addClass("").text(aNPSHistory[i].markerName)
+            );
+        }
+    }
 }
+
+
+//save 10 click  history to history array
+var saveHistoryData = function (aNPSIndex) {
+    if (aNPSHistory.includes(aNPS[aNPSIndex])) { return };
+    if (aNPSHistory.length > 9) {
+        aNPSHistory.shift();
+    }
+    aNPSHistory.push(aNPS[aNPSIndex])
+    localStorage.setItem("campClickSave", JSON.stringify(aNPSHistory));
+    loadHistoryBtn();
+};
 
 // update google map with the passing object to loop through and drop markers
 function updateMap(objectIn, centerOn) {
@@ -222,7 +246,9 @@ function updateMap(objectIn, centerOn) {
         google.maps.event.addListener(infowindow, 'domready', function () {
             // $(".btn-site").on('click', function(e) {
             console.log('dom ready');
-            console.log("infoWindow Data ",document.getElementById("infoWindowData"));
+            console.log(document.getElementById("infoWindowData").getAttribute("data-index"));
+            // console.log("infoWindow Data ",document.getElementById("infoWindowData"));
+            saveHistoryData(document.getElementById("infoWindowData").getAttribute("data-index"))
 
             // });  
         });
