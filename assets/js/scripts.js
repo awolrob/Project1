@@ -3,16 +3,6 @@ var searchBtn = document.getElementById("user-form");
 var searchState = document.getElementById("state");
 var searchTerm;
 
-var select = document.getElementById("#select-state"); 
-
-for(var i = 0; i < options.length; i++) {
-    var jsonStateAbbr = options[i];
-    var el = document.createElement("option");
-    el.textContent = jsonStateAbbr;
-    el.value = jsonStateAbbr, "abbv";
-    select.appendChild(el);
-}
-
 //National Park Service API Variables
 // center of the USA
 var aNPS = [
@@ -234,11 +224,38 @@ function updateMap(objectIn, centerOn) {
 centerMap(parseFloat(aNPS[0].latitude), parseFloat(aNPS[0].longitude), 4);
 
 //Call NPS API for all sites in the US
-fNpsApi("");
+// fNpsApi("NV");
 
 getMapCenter();
 
-searchBtn.addEventListener("submit", searchClickHandler);
+
+var selectEl = document.getElementById("select-state");
+console.log(selectEl)
+
+for(var i=0; i<jsonStateAbbr.length; i++) {
+    // console.log(i)
+    var newOption =  document.createElement("option");
+    newOption.textContent = jsonStateAbbr[i].state;
+    newOption.setAttribute ("value", jsonStateAbbr[i].abbv);
+    selectEl.appendChild(newOption)
+    console.log(newOption);
+}
+
+selectEl.addEventListener("select", console.log("here"), false);
+
+var myfunction = function() {
+    console.log(selectEl.value);
+    fNpsApi(selectEl.value);
+}
+// for(var i = 0; i < jsonStateAbbr.length; i++) {
+//     var el = document.createElement("option");
+//     el.textContent = jsonStateAbbr[i].state;
+//     // el.textContent = jsonStateAbbr;
+//     // el.value = jsonStateAbbr, "abbv";
+//     select.appendChild(el);
+// }​
+
+// searchBtn.addEventListener("submit", searchClickHandler);
 // Define Variables to hold Camp API data
 //  location data, name data, long lat
 // Define Variables to hold Weather API data
