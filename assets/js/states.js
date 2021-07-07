@@ -14,7 +14,7 @@ var jsonStateAbbr = [
     },
     {
         "state": "Arkansas",
-        "abbv": "AK",
+        "abbv": "AR",
         "latitude": 34.9513,
         "longitude": -92.3809
     },
