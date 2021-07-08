@@ -19,6 +19,7 @@ header {
 
 body {
     background: #fff2b8;
+    height: 100vh;
 }
 
 .title {
@@ -30,6 +31,10 @@ footer {
     padding: 20px;
     color: whitesmoke;
     border-top: solid 4px #4c4a41;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
 }
 
 #map {
@@ -105,9 +110,6 @@ footer {
     border-radius: 8px 40px 40px 8px;
 }
 
-
-
-
 .history-data {
     background: #645b16d6;
     color: whitesmoke;
@@ -122,4 +124,21 @@ footer {
     transition: .7s;
     border: double 6px;
     border-radius: 8px 40px 40px 8px;
+}
+
+.npText {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    padding: 5px 0px 5px 15px;
+    background: #BDD860;
+}
+
+.npQuest {
+    font-size: 24px;
+    font-weight: bold;
+    background: #BDD860;
+    margin-bottom: 5px;
+    padding: 5px 0px 5px 15px
+        
 }
