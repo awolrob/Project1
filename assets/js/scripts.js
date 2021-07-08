@@ -32,9 +32,9 @@ var mapArray = [];
 
 
 /* FUNCTIONS */
-closeModal= function(event) {
+closeModal = function (event) {
     var target = $("#error-modal");
-        $(target).removeClass("is-active");
+    $(target).removeClass("is-active");
 }
 
 
@@ -123,8 +123,8 @@ fNpsApi = function (stateIn) {
                 updateMap(aNPS);
             } else {
                 var target = $("#error-modal");
-                    
-                    $(target).addClass("is-active");
+
+                $(target).addClass("is-active");
             }
         }
         );
@@ -190,12 +190,9 @@ var loadHistoryBtn = function () {
     if (aNPSHistory) {
         for (i = 0; i < aNPSHistory.length; i++) {
             // console.log(aNPSHistory[i].markerName);
-            $("#history").append(
-                $("<p class='history-data'>").addClass("").text(aNPSHistory[i].markerName + " [BUTTON TO DELETE FROM HISTORY]")
-            );
             // debugger;
             //desired location to add the a weather line
-            getCurWeather(aNPSHistory[i].latitude, aNPSHistory[i].longitude);
+            getCurWeather(aNPSHistory[i].latitude, aNPSHistory[i].longitude,aNPSHistory[i].markerName);
         }
     }
 }
@@ -300,7 +297,7 @@ function updateMap(objectIn) {
 
 
 //List current weather conditions on each clicked location
-var getCurWeather = function (lat, lng) {
+var getCurWeather = function (lat, lng,parkname) {
 
     var apiUrlonecall = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat +
         "&lon=" + lng +
@@ -318,19 +315,23 @@ var getCurWeather = function (lat, lng) {
                         data.current.temp + ' °F  |  ' +
                         "Wind: " + data.current.wind_speed + " MPH  |  " +
                         "Humidity: " + data.current.humidity + " %";
-                    console.log(weatherLine);
+                    $("#history").append(
+                        $("<button class='history-data'>").addClass("").text(parkname )
+                    );
+
+                    // console.log(weatherLine);
 
                     $("#history").append(
                         $("<p>").addClass("").text(weatherLine));
 
                 });
             } else {
-                alert("Error: " + response.statusText);
+                // alert("Error: " + response.statusText);
             }
         }
         )
         .catch(function (error) {
-            alert("Unable to connect to Open Weather Map API One Call");
+            // alert("Unable to connect to Open Weather Map API One Call");
         }
         )
 };
@@ -340,18 +341,6 @@ var myfunction = function () {
     // console.log(selectEl.value);
     fNpsApi(selectEl.value);
 }
-var fAddWeather = function () {
-    // console.log(selectEl.value);
-    if (aNPSHistory) {
-        elHistoryData = document.getElementsByClassName('history-data');
-        for (i = 0; i < elHistoryData.length; i++) {
-            getCurWeather(aNPSHistory[i].latitude, aNPSHistory[i].longitude);
-            elHistoryData[i].outerHTML = elHistoryData[i].outerHTML + '<p>' + weatherLine + ' </p></br>';
-        }
-    }
-
-}
-
 
 //Center map in US//
 // centerMap(parseFloat(aNPS[0].latitude), parseFloat(aNPS[0].longitude), 4);
