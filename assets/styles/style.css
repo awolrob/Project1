@@ -1,5 +1,6 @@
 /*  Color Codes 
-(subject to slight changes/tweaks based on my ocd of making stuff look nice)
+(subject to slight changes/tweaks 
+based on my ocd of making stuff look nice)
 
     Deep_Moss_Green: #3B6B35
     Fern_Green: #637F42
@@ -34,4 +35,75 @@ footer {
 #map {
     background-color: #fff2b8;
     height: 450px;
+}
+
+.modal1 {
+    background-color: rgba(0,0,0,0.3);
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+
+    
+  
+}
+    
+.modal-card1{
+    background-color: rgb(222 230 173);
+    width: 600px;
+    max-width: 100%;
+    padding: 30px 50px;
+    border-radius: 5px;
+    box-shadow: 02px 4px rgba(150, 200, 0, 0.2);
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+  
+}
+   
+.modHead {
+    font-size: 40px;
+    font-weight: bold;
+    color: #637f42;
+}
+
+.modText {
+    font-size: 20px;
+    color: darkslategray
+}
+.modBtn {
+    background:#645B16d6;
+    border: solid 2px black;
+    border-radius: 10px;
+    color: #daf1da;
+    font-weight: bolder;
+    margin: 20px; 
+    transition: .7s;
+}
+
+.modBtn:hover {
+    background: #bdd860;
+    transition: .7s;
+    border-radius: 30px;
+    border: double 6px;
+}
+
+.stateBtn {
+    background: #645b16d6;
+    color: whitesmoke;
+    border: solid 2px black ;
+    border-radius: 8px 20px 20px 8px;
+    font-weight: bold;    
+    transition: .7s
+}
+
+.stateBtn:hover {
+    background: #bdd860;
+    color: #1f3827;
+    transition: .7s;
+    border: double 6px;
+    border-radius: 8px 40px 40px 8px;
 }

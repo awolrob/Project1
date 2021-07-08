@@ -10,7 +10,8 @@
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <!-- End Google Maps Api call -->
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/fontawesome.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="./assets/styles/style.css">
     <!-- <link rel="stylesheet" href="./assets/images/clipart2984201.png"> -->
@@ -18,14 +19,14 @@
     <title>National Park Search and Weather Forecast</title>
 </head>
 
-    <header class="header" style="margin: 0;">
-        <h1 class="title is-1">Can I Camp</h1>
-        <h2 class="subtitle is-2">National Park Search and Weather Forecast</h2>
-    </header>
+<header class="header" style="margin: 0;">
+    <h1 class="title is-1">Can I Camp</h1>
+    <h2 class="subtitle is-2">National Park Search and Weather Forecast</h2>
+</header>
 
 
 <body>
-  
+
 
     <!-- Search Bar -->
     <div class="container">
@@ -34,11 +35,24 @@
 
             <div class="select is-large" style="margin-bottom: 10px; padding-bottom: 10px;">
                 <select id="select-state">
-                  <option value="">Select dropdown</option>
-                  <option>With options</option>
+<<<<<<< HEAD
+                    <option value="">Select dropdown</option>
+                    <option>With options</option>
                 </select>
+            </div>
+            <button onclick="myfunction()">Search</button>
+=======
+                <option value="">Select dropdown</option>
+                <option>With options</option>
+                </select>
+<<<<<<< HEAD
               </div>
               <button onclick="myfunction()" class="button is-large">Search</button>
+=======
+            </div>
+            <button class="button is-large stateBtn" id="stateBtn" onclick="myfunction()">Search</button>
+>>>>>>> b742672ca833de797dca6c935760ded3fe8b2b37
+>>>>>>> 195971c9a41801d97878110c2eb9ede57d5682d3
             <!-- <form class="search bar is-large" action="action_page.php"> -->
             <!-- <form id="user-form" class="search-bar is-large" style="margin: 5px; padding-bottom: 10px;" action="action_page.php">
                 <label for="state"></label>
@@ -48,33 +62,40 @@
         </div>
 
         <div class="columns" style="margin-bottom: 15px; width: 100%;">
-            <div  class="column is-half box" style="background-color: darkolivegreen;">
+            <div class="column is-half box" style="background-color: darkolivegreen;">
                 <div class="field is-primary" style="padding-bottom: 10px; background-color: #fff2b8;">
                     National Parks Map
                     <div class="control" id="map">
 
                     </div>
                 </div>
-                
+
             </div>
 
-            <div  class="column is-half box" style="background-color: darkolivegreen;">
+            <div class="column is-half box" style="background-color: darkolivegreen;">
                 <div class="field" style="padding-bottom: 10px; background-color: #fff2b8;">
-                    <p class="text is-large">Recent Searches</p> 
+                    <p class="text is-large">My National Park Camping Quest </p>
                     <div class="control" id="history">
 
                     </div>
                 </div>
-                
+            </div>
+            <button onclick="fAddWeather()">Add Weather</button>
+        </div>
+
+        <div id="error-modal" class="modal modal1">
+            <div class="modal-card modal-card1">
+                <hi class="modHead"> Big bummer... </h1>
+                <p class="modText">
+                    Unfortunately we couldn't find any national parks in the state you selected. 
+                </p>
+                <button class="button is-large modBtn" onclick="closeModal()">Go Back</button>
             </div>
         </div>
     
-
-    
-    
     </div>
 
-
+    
 
 
     <footer>
@@ -82,17 +103,18 @@
             A JSON Sedekids Creation
         </p>
     </footer>
-    
+
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- <script src="./assets/apikey.js"></script> -->
-    <script src="./assets/js/states.js"></script>
-
+    <script src="./assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/states.js"></script>
+    <script src="./assets/js/scripts.js"></script>
     <!-- <script src="./assets/js/nps.js"></script> -->
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCXIaEMJFrPiB6zlFG-ZIHSimP1PRQ7eGA&callback=initMap&libraries=&v=weekly"
         async></script>
-        <script src="./assets/js/scripts.js"></script>
+
 </body>
 
 </html>
