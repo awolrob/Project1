@@ -32,6 +32,11 @@ var mapArray = [];
 
 
 /* FUNCTIONS */
+closeModal= function(event) {
+    var target = $("#error-modal");
+        $(target).removeClass("is-active");
+}
+
 
 // //Handle search click
 // searchClickHandler = function (event) {
@@ -50,7 +55,8 @@ fixLngData = function (longitude) {
         correctedLongitude = longitude;
     }
     return correctedLongitude;
-}
+};
+
 
 //call National Park Service API for state code selected
 fNpsApi = function (stateIn) {
@@ -116,7 +122,9 @@ fNpsApi = function (stateIn) {
                 // console.log("aNPS total : ", aNPS.length);
                 updateMap(aNPS);
             } else {
-                alert("Sorry, there are no National Park System campgrounds in the state of: " + stateIn)
+                var target = $("#error-modal");
+                    
+                    $(target).addClass("is-active");
             }
         }
         );

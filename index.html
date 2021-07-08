@@ -35,11 +35,19 @@
 
             <div class="select is-large" style="margin-bottom: 10px; padding-bottom: 10px;">
                 <select id="select-state">
+<<<<<<< HEAD
                     <option value="">Select dropdown</option>
                     <option>With options</option>
                 </select>
             </div>
             <button onclick="myfunction()">Search</button>
+=======
+                <option value="">Select dropdown</option>
+                <option>With options</option>
+                </select>
+            </div>
+            <button class="button is-large stateBtn" id="stateBtn" onclick="myfunction()">Search</button>
+>>>>>>> b742672ca833de797dca6c935760ded3fe8b2b37
             <!-- <form class="search bar is-large" action="action_page.php"> -->
             <!-- <form id="user-form" class="search-bar is-large" style="margin: 5px; padding-bottom: 10px;" action="action_page.php">
                 <label for="state"></label>
@@ -66,17 +74,23 @@
 
                     </div>
                 </div>
-
             </div>
             <button onclick="fAddWeather()">Add Weather</button>
         </div>
 
-
-
-
+        <div id="error-modal" class="modal modal1">
+            <div class="modal-card modal-card1">
+                <hi class="modHead"> Big bummer... </h1>
+                <p class="modText">
+                    Unfortunately we couldn't find any national parks in the state you selected. 
+                </p>
+                <button class="button is-large modBtn" onclick="closeModal()">Go Back</button>
+            </div>
+        </div>
+    
     </div>
 
-
+    
 
 
     <footer>
@@ -86,7 +100,9 @@
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="./assets/js/states.js"></script>
+    <!-- <script src="./assets/apikey.js"></script> -->
+    <script src="./assets/js/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/states.js"></script>
     <script src="./assets/js/scripts.js"></script>
     <!-- <script src="./assets/js/nps.js"></script> -->
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
