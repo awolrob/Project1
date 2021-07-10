@@ -14,12 +14,16 @@ based on my ocd of making stuff look nice)
 header {
     padding: 25px 10px 20px 30px;
     background: #637f42;
+    overflow: auto;
     width: 100%;
 }
 
 body {
     background: #fff2b8;
-    height: 100vh;
+    min-height: 175vh;
+    overflow: auto;
+    margin-bottom: 35px;
+    clear: both;
 }
 
 .title {
@@ -40,6 +44,12 @@ footer {
 #map {
     background-color: #fff2b8;
     height: 450px;
+    margin-left: 5px;
+}
+
+.field {
+    max-height: 450px;
+    overflow: auto;
 }
 
 .modal1 {
