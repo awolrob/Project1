@@ -20,18 +20,23 @@
 </head>
 
 <header class="header" style="margin: 0;">
-    <h1 class="title is-1">Can I Camp</h1>
-    <h2 class="subtitle is-2">National Park Search and Weather Forecast</h2>
+    <div class="titles-div">
+        <h1 class="title is-1">Can I Camp</h1>
+        <h2 class="subtitle is-2">National Park Search and Weather Forecast</h2>
+    </div>
+    <div class="camp-icon-div">
+        <img src="assets/images/camp-icon-13.jpg" rel="camp_icon" class="camp-icon">
+    </div>
 </header>
 
 
 <body>
 
 
-    <!-- Search Bar -->
-    <div class="container">
-        <div class="column is-12">
 
+    <div class="container">
+        <div class="column is-12" style="padding-bottom: 5%;">
+    <!-- Search Bar -->
 
             <div class="select is-large" style="margin-bottom: 10px; padding-bottom: 10px;">
                 <select id="select-state">
@@ -40,16 +45,11 @@
                 </select>
             </div>
               <button class="button is-large stateBtn" id="stateBtn" onclick="myfunction()">Search</button>
-
-            <!-- <form class="search bar is-large" action="action_page.php"> -->
-            <!-- <form id="user-form" class="search-bar is-large" style="margin: 5px; padding-bottom: 10px;" action="action_page.php">
-                <label for="state"></label>
-                <input id="state" type="text" placeholder="Type in State Code.." name="state" class="input is-large">
-                <button type="submit" class="button is-large">Search<i class="search"></i></button>
-            </form> -->
         </div>
 
-        <div class="columns" style="margin-bottom: 15px; width: 100%;">
+        <!-- Map and Search History Section -->
+
+        <div class="columns" style="margin-left: 5px; margin-bottom: 15px; width: 100%;">
             <div class="column is-half box" style="background-color: darkolivegreen;">
                 <div class="field is-primary" style="padding-bottom: 10px; background-color: #fff2b8;">
                     <p class="npText">National Parks Map</p>
@@ -60,7 +60,7 @@
 
             </div>
 
-            <div class="column is-half box" style="background-color: darkolivegreen;">
+            <div class="column is-half box" style="background-color: darkolivegreen; margin-bottom: 1.30rem;"">
                 <div class="field" style="padding-bottom: 10px; background-color: #fff2b8;">
                     <p class="npQuest">My National Park Camping Quest </p>
                     <div class="control" id="history">
@@ -70,6 +70,8 @@
             </div>
 
         </div>
+
+        <!-- Modal -->
 
         <div id="error-modal" class="modal modal1">
             <div class="modal-card modal-card1">
@@ -83,15 +85,14 @@
     
     </div>
 
-    
-
-
-    <footer>
+    <footer class="column-is-12">
         <p>
             A JSON Sedekids Creation
         </p>
     </footer>
 
+
+    <!-- JS Links -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- <script src="./assets/apikey.js"></script> -->
     <script src="./assets/js/jquery-3.6.0.min.js"></script>

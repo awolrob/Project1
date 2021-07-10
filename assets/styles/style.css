@@ -1,25 +1,18 @@
-/*  Color Codes 
-(subject to slight changes/tweaks 
-based on my ocd of making stuff look nice)
-
-    Deep_Moss_Green: #3B6B35
-    Fern_Green: #637F42
-    Olive_Drab_Camouflage: #4C4A41
-    Bistre_Brown: #9F7B21
-    Misty_Moss: #BFAA72
-    Antique_Bronze: #645B16
-
-*/
-
 header {
     padding: 25px 10px 20px 30px;
     background: #637f42;
+    overflow: auto;
     width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 body {
     background: #fff2b8;
-    height: 100vh;
+    min-height: 175vh;
+    overflow: auto;
+    margin-bottom: 35px;
+    clear: both;
 }
 
 .title {
@@ -37,10 +30,8 @@ footer {
     text-align: center;
 }
 
-#map {
-    background-color: #fff2b8;
-    height: 450px;
-}
+
+/* Modal Start */
 
 .modal1 {
     background-color: rgba(0,0,0,0.3);
@@ -93,6 +84,10 @@ footer {
     border: double 6px;
 }
 
+/* Modal End */
+
+/* Dropdown Button Start */
+
 .stateBtn {
     background: #645b16d6;
     color: whitesmoke;
@@ -108,6 +103,21 @@ footer {
     transition: .7s;
     border: double 6px;
     border-radius: 8px 40px 40px 8px;
+}
+
+/* Dropdown Button End */
+
+/* Map and Search Contents */
+
+#map {
+    background-color: #fff2b8;
+    height: 450px;
+    margin-left: 5px;
+}
+
+.field {
+    max-height: 450px;
+    overflow: auto;
 }
 
 .history-data {
@@ -141,4 +151,9 @@ footer {
     margin-bottom: 5px;
     padding: 5px 0px 5px 15px
         
+}
+
+.camp-icon {
+    height: 175px;
+    margin: 0px 20px 0px 0px;
 }
