@@ -9,9 +9,8 @@ header {
 
 body {
     background: #fff2b8;
-    min-height: 175vh;
+    min-height: 150vh;
     overflow: auto;
-    margin-bottom: 35px;
     clear: both;
 }
 
@@ -156,4 +155,14 @@ footer {
 .camp-icon {
     height: 175px;
     margin: 0px 20px 0px 0px;
+}
+
+@media only screen and (max-width: 760px) {
+    footer {
+        position: relative;
+        padding: inherit;
+        overflow: auto;
+        max-width: 100%;
+    }
+    
 }
