@@ -1,4 +1,4 @@
-# Project1 - National Parks Campground 
+# Project1 - National Parks Campground Search
 
 
 Have you ever wondered where you can enjoy a national park campground? You only need to know where you are headed and if the weather is good enough to go camping! The outdoorsy type isn’t interested in getting bogged down in internet soup. They want to enjoy the outdoors! This application cuts out the fat and gives the user the most important information right away.
