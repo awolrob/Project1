@@ -45,12 +45,6 @@ Using the dropdown menu at the top of the page, you can select a state of your c
 You can view the live application at this link provided. [Live-app](https://awolrob.github.io/Project1/)
 
 
-
-
-The longitude and latitude are hard coded in the js code (line 2) for Australia - changed to local log lat.  Add another marker call for another long lat.
-
-Using google Maps for JAvascript in theory we can learn the API query requirements to send the API a list of PIN points to label and display.
-
 # Credits:
 
 ### Collaborators
@@ -68,3 +62,7 @@ Using google Maps for JAvascript in theory we can learn the API query requiremen
 4) https://gist.github.com/mshafrir/2646763
 
 5) https://gist.github.com/meiqimichelle/7727723
+
+6) https://openweathermap.org/api
+
+7) 

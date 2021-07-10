@@ -157,6 +157,9 @@ footer {
     margin: 0px 20px 0px 0px;
 }
 
+
+/* Media Queries */
+
 @media only screen and (max-width: 760px) {
     footer {
         position: relative;
