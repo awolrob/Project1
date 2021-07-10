@@ -28,10 +28,10 @@
 <body>
 
 
-    <!-- Search Bar -->
+
     <div class="container">
         <div class="column is-12">
-
+    <!-- Search Bar -->
 
             <div class="select is-large" style="margin-bottom: 10px; padding-bottom: 10px;">
                 <select id="select-state">
@@ -40,14 +40,9 @@
                 </select>
             </div>
               <button class="button is-large stateBtn" id="stateBtn" onclick="myfunction()">Search</button>
-
-            <!-- <form class="search bar is-large" action="action_page.php"> -->
-            <!-- <form id="user-form" class="search-bar is-large" style="margin: 5px; padding-bottom: 10px;" action="action_page.php">
-                <label for="state"></label>
-                <input id="state" type="text" placeholder="Type in State Code.." name="state" class="input is-large">
-                <button type="submit" class="button is-large">Search<i class="search"></i></button>
-            </form> -->
         </div>
+
+        <!-- Map and Search History Section -->
 
         <div class="columns" style="margin-left: 5px; margin-bottom: 15px; width: 100%;">
             <div class="column is-half box" style="background-color: darkolivegreen;">
@@ -71,6 +66,8 @@
 
         </div>
 
+        <!-- Modal -->
+
         <div id="error-modal" class="modal modal1">
             <div class="modal-card modal-card1">
                 <hi class="modHead"> Big bummer... </h1>
@@ -83,15 +80,14 @@
     
     </div>
 
-    
-
-
     <footer class="column-is-12">
         <p>
             A JSON Sedekids Creation
         </p>
     </footer>
 
+
+    <!-- JS Links -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- <script src="./assets/apikey.js"></script> -->
     <script src="./assets/js/jquery-3.6.0.min.js"></script>
