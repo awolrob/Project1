@@ -3,6 +3,8 @@ header {
     background: #637f42;
     overflow: auto;
     width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 body {
@@ -149,4 +151,9 @@ footer {
     margin-bottom: 5px;
     padding: 5px 0px 5px 15px
         
+}
+
+.camp-icon {
+    height: 175px;
+    margin: 0px 20px 0px 0px;
 }
