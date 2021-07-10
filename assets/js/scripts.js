@@ -220,7 +220,6 @@ var getCurWeather = function (lat, lng, parkname) {
     fetch(apiUrlonecall)
         .then(function (response) {
             // request was successful
-            console.log(response);
             if (response.ok) {
                 response.json().then(function (data) {
                     weatherLine = "Current Conditions: Temp: " +
