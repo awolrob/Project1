@@ -1,6 +1,6 @@
 /* variables */
+
 var searchBtn = document.getElementById("user-form");
-// var searchState = document.getElementById("state");
 var selectEl = document.getElementById("select-state");
 var searchTerm;
 var weatherLine = "";
@@ -25,9 +25,8 @@ var aNPSHistory = JSON.parse(localStorage.getItem('campClickSave')) || [];
 
 // Google Maps API Variables
 var myLatLng = { lat: 0, lng: 0 };
-// var map;
 var mapArray = [];
-// var markerName;
+
 /* END VARIABLES*/
 
 
@@ -36,15 +35,6 @@ closeModal = function (event) {
     var target = $("#error-modal");
     $(target).removeClass("is-active");
 }
-
-
-// //Handle search click
-// searchClickHandler = function (event) {
-//     event.preventDefault();
-//     searchTerm = searchState.value.trim();
-//     // console.log(searchTerm)
-//     fNpsApi(searchTerm);
-// };
 
 //correct longitude data for some locations in the NPS data
 fixLngData = function (longitude) {
@@ -66,20 +56,15 @@ fNpsApi = function (stateIn) {
         '&limit=700' +
         '&api_key=nNVtVCtPxYIdqgXcnAhfGjtCq9cW1SUGJ6AnV68u';
     aNPS = [];
-    // Create a variable to hold the value of rating
-    // var rating = document.querySelector('#rating').value;
     //  https://developer.nps.gov/api/v1/parks?parkCode=acad&api_key=nNVtVCtPxYIdqgXcnAhfGjtCq9cW1SUGJ6AnV68u
-
-    //  add error checking - are there NO NPS campgrounds in the state you selected?
 
     fetch(sNpsApi)
         .then(function (response) {
             return response.json();
         })
         .then(function (response) {
-            // console.log(response);
             if (response.total > 0) {
-                // console.log("response total : ", response.total);
+                // create seperate index to count good api records read
                 var iGoodDataIndex = -1;
                 for (i = 0; i < response.data.length; i++) {
                     if (response.data[i].latLong > "") {
@@ -93,6 +78,7 @@ fNpsApi = function (stateIn) {
                                 "' </img>"
                         };
 
+                        // create variable to hold infowindow description
                         var descText;
 
                         if (response.data[i].audioDescription === "") {
@@ -108,7 +94,8 @@ fNpsApi = function (stateIn) {
                             descText +
                             "</p>" +
                             image;
-                        // console.log(infoHTML);
+
+                        // save good record to NPS array
                         aNPS.push(
                             {
                                 markerName: response.data[i].name,
@@ -119,11 +106,10 @@ fNpsApi = function (stateIn) {
                         )
                     }
                 }
-                // console.log("aNPS total : ", aNPS.length);
                 updateMap(aNPS);
+
             } else {
                 var target = $("#error-modal");
-
                 $(target).addClass("is-active");
             }
         }
@@ -132,81 +118,38 @@ fNpsApi = function (stateIn) {
 
 //initialize good map - first call through google maps "callback" parm
 function initMap() {
-    // myLatLng.lat = parseFloat(aNPS[0].latitude);
-    // myLatLng.lng = parseFloat(aNPS[0].longitude);
-    // debugger;
     map = new google.maps.Map(document.getElementById("map"), {
         // zoom: 4,
         // center: myLatLng,
     });
-    //Load National Park Service click history data
+    //Load National Park Service click history data to map and set bounds to location max
     if (aNPSHistory) {
         updateMap(aNPSHistory);
     };
 
 };
 
-// function getMapCenter(centerIn) {
-//     // console.log(jsonStateAbbr);
-//     // debugger;
-//     var latitude = "39.50";
-//     var longitude = "-98.35";
-
-//     function arrayMap() {
-//         stateIndex = jsonStateAbbr.map(function (e) {
-//             return e.abbv;
-//         }).indexOf(centerIn);
-//         // console.log("Index of 'state'  is = " + stateIndex);
-//     }
-//     arrayMap();
-
-//     if (stateIndex === -1) {
-//         //not state sent or not found - center map on USA
-//         centerMap(parseFloat(latitude), parseFloat(longitude), 3);
-//     } else {
-//         centerMap(parseFloat(jsonStateAbbr[stateIndex].latitude), parseFloat(jsonStateAbbr[stateIndex].longitude), 4);
-//     }
-// };
-
-// //Center map on state or USA
-// function centerMap(lat, lng, zoomIn) {
-//     myLatLng.lat = parseFloat(lat);
-//     myLatLng.lng = parseFloat(lng);
-//     //ugly first pass logic
-//     if (map) {
-//         map = new google.maps.Map(document.getElementById("map"), {
-//             zoom: zoomIn,
-//             center: myLatLng,
-//         });
-//     };
-// };
-
-function clearMarkers() {
-    setMapOnAll(null);
-};
-
+// reload history button and refresh api data
 var loadHistoryBtn = function () {
     $("#history").empty();
     if (aNPSHistory) {
         for (i = 0; i < aNPSHistory.length; i++) {
-            // console.log(aNPSHistory[i].markerName);
-            // debugger;
-            //desired location to add the a weather line
-            getCurWeather(aNPSHistory[i].latitude, aNPSHistory[i].longitude,aNPSHistory[i].markerName);
+            getCurWeather(aNPSHistory[i].latitude, aNPSHistory[i].longitude, aNPSHistory[i].markerName);
         }
     }
 }
 
-
 //save 10 click  history to history array
 var saveHistoryData = function (aNPSIndex) {
     if (aNPSHistory.includes(aNPS[aNPSIndex])) { return };
+
     if (aNPSHistory.length > 19) {
+        //FIFO
         aNPSHistory.shift();
     }
+
     aNPSHistory.push(aNPS[aNPSIndex])
     localStorage.setItem("campClickSave", JSON.stringify(aNPSHistory));
-    // debugger;
     loadHistoryBtn();
 };
 
@@ -297,7 +240,7 @@ function updateMap(objectIn) {
 
 
 //List current weather conditions on each clicked location
-var getCurWeather = function (lat, lng,parkname) {
+var getCurWeather = function (lat, lng, parkname) {
 
     var apiUrlonecall = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat +
         "&lon=" + lng +
@@ -316,7 +259,7 @@ var getCurWeather = function (lat, lng,parkname) {
                         "Wind: " + data.current.wind_speed + " MPH  |  " +
                         "Humidity: " + data.current.humidity + " %";
                     $("#history").append(
-                        $("<button class='history-data'>").addClass("").text(parkname )
+                        $("<button class='history-data'>").addClass("").text(parkname)
                     );
 
                     // console.log(weatherLine);
@@ -368,50 +311,3 @@ for (var i = 0; i < jsonStateAbbr.length; i++) {
 if (aNPSHistory) {
     loadHistoryBtn();
 };
-// debugger;
-
-// for(var i = 0; i < jsonStateAbbr.length; i++) {
-//     var el = document.createElement("option");
-//     el.textContent = jsonStateAbbr[i].state;
-//     // el.textContent = jsonStateAbbr;
-//     // el.value = jsonStateAbbr, "abbv";
-//     select.appendChild(el);
-// }​
-
-// searchBtn.addEventListener("submit", searchClickHandler);
-// Define Variables to hold Camp API data
-//  location data, name data, long lat
-// Define Variables to hold Weather API data
-//  5-day forcast / future forecast (if available to free API usage)
-
-//Define Variables to hold local storage search history
-//Define Variables to hold random data to pass from API to API
-// reformat dates, etc
-// vars to capture user data - zip code and possibly date of trip
-/* end variables */
-
-/* Listeners */
-//add listener for search button
-//add listerer for history button array
-/* End Listeners */
-
-/* Functions */
-//add function to call Camp API based on user input from search button
-
-//add function to save successful search history (maybe add a message to click button to save?)
-
-//add function to pull saved local storage
-
-//add function to call Weather API
-
-//add function to call Google Mapping API
-/* End Functions */
-
-/* Begin main logic */
-// pull current date for default weather API call...
-//check local storage for saved date - 
-//  if it exists, loop through length calling 
-//      load saved searches vars
-//      append saved buttons
-//
-/* end main logic */
